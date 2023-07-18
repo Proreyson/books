@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <title>List of Books</title>
+    <style>
+        * {
+            font-family: 'Schibsted Grotesk', sans-serif;
+
+        }
+
+        /*header section design*/
+
+        .navbar-brand span {
+            color: yellow;
+        }
+
+        .navbar-collapse .nav-item .nav-link {
+            position: relative;
+            color: #fff;
+        }
+
+        .navbar-collapse .nav-item .nav-link:hover {
+            color: yellow;
+        }
+
+        .navbar-collapse .nav-item .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background-color: yellow;
+            transition: 0.45s ease-in;
+        }
+
+        .navbar-collapse .nav-item .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /*main section design*/
+
+        .books {
+            padding: 120px;
+            width: 100%;
+        }
+
+        .books-content {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            gap: 1rem;
+        }
+
+        .books-content .row-img img {
+            width: 100%;
+            display: block;
+        }
+
+        /*main section design*/
+
+        .parent-content {
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .parent-row {
+            border: 1px solid dodgerblue;
+            padding: 1rem;
+
+        }
+
+        .parent-row-img img {
+            display: block;
+            max-width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .parent-row-text h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: .80rem auto 0;
+            color: dodgerblue;
+            max-width: 200px;
+        }
+
+        .parent-row-text span {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .parent-row-text p {
+            color: #777;
+            max-width: 400px;
+        }
+
+        /*footer section design*/
+
+        footer i {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        footer i:hover {
+            color: #222;
+        }
+
+        .email {
+            font-size: 1.2rem;
+            color: #eee;
+            font-weight: bolder;
+        }
+
+        .number {
+
+            font-size: .95rem;
+            color: #222;
+            font-weight: bold;
+        }
+
+        .container3 {
+            padding-top: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!--header layout-->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand fw-bolder fs-2">GROUP <span>9</span></a>
+                <button class="navbar-toggler" type="button" data-bs-target="#mynavbar" data-bs-toggle="collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex ms-auto">
+                        <input id="IdNgSearchForm" type="text" class="form-control" placeholder="Search">
+                        <button onclick="getBooks()" class="btn btn-primary" type="button">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="bodyNgSearch" class="container3">
+        <!-- <div class="row"> -->
+          <!-- <div class="col"> -->
+            <!-- <img src="book1.jpg" alt="Book 1"> -->
+            <!-- <h3>Book 1 Title</h3> -->
+            <!-- <p>Book 1 Author</p> -->
+          <!-- </div> -->
+<!--            -->
+          <!-- <div class="col"> -->
+            <!-- <img src="book2.jpg" alt="Book 2"> -->
+            <!-- <h3>Book 2 Title</h3> -->
+            <!-- <p>Book 2 Author</p> -->
+          <!-- </div> -->
+<!--            -->
+          <!-- <div class="col"> -->
+            <!-- <img src="book2.jpg" alt="Book 3"> -->
+            <!-- <h3>Book 3 Title</h3> -->
+            <!-- <p>Book 3 Author</p> -->
+          <!-- </div> -->
+
+          <!-- <div class="col"> -->
+            <!-- <img src="book2.jpg" alt="Book 4"> -->
+            <!-- <h3>Book 2 Title</h3> -->
+            <!-- <p>Book 2 Author</p> -->
+          <!-- </div> -->
+<!--            -->
+        <!-- </div>   -->
+      </div>
+      
+
+
+    <div class="parent mt-3 container-fluid p-5">
+        <div class="parent-content">
+            <div class="row">
+                <div class="parent-row col-md-4">
+                    <div class="parent-row-img">
+                        <img src="https://th.bing.com/th/id/R.847ff818eb060a80aa401c0273ee49ef?rik=PitBxG7NXly9yA&riu=http%3a%2f%2fi2.wp.com%2fgeekdad.com%2fwp-content%2fuploads%2f2013%2f02%2fHP1-Kibuishi.jpg&ehk=uafYYv3yMqpRGlecJf0Si6SPSZwksDcZUzc982%2byhlQ%3d&risl=&pid=ImgRaw&r=0"
+                            alt="">
+                    </div>
+                    <div class="parent-row-text">
+                        <h2>Harry Potter</h2>
+                        <span>J.K Rowling</span>
+                        <p>The novels chronicle the lives of a young wizard, Harry Potter, and his friends Hermione
+                            Granger and Ron Weasley, all of whom are students at Hogwarts School of Witchcraft and
+                            Wizardry.</p>
+                        <button class="btn btn-primary" type="button">Read more</button>
+                    </div>
+                </div>
+                <div class="parent-row  col-md-4">
+                    <div class="parent-row-img">
+                        <img src="https://i0.wp.com/betthisisoriginalreviews.wordpress.com/files/2009/02/twilight-cover.jpg"
+                            alt="">
+                    </div>
+                    <div class="parent-row-text">
+                        <h2>Twilight</h2>
+                        <span>Stephenie Meyer</span>
+                        <p>It is the first book in the Twilight series, and introduces seventeen-year-old Isabella
+                            "Bella" Swan, who moves from Phoenix, Arizona to Forks, Washington.</p>
+                        <button class="btn btn-primary" type="button">Read more</button>
+                    </div>
+                </div>
+                <div class="parent-row  col-md-4">
+                    <div class="parent-row-img">
+                        <img src="https://www.pluggedin.com/wp-content/uploads/2020/01/game-of-thrones-cover-1006x1536.jpg"
+                            alt="">
+                    </div>
+                    <div class="parent-row-text">
+                        <h2>Game Of Thrones</h2>
+                        <span>George R. Martin</span>
+                        <p> A Song of Ice and Fire takes place on the fictional continents Westeros and Essos. The
+                            point
+                            of view of each chapter in the story is a limited perspective of a range of characters
+                            growing from nine in the first novel, to 31 characters by the fifth novel.</p>
+                        <button class="btn btn-primary" type="button">Read more</button>
+                    </div>
+                </div>
+
+                <div class="parent-row  col-md-4">
+                    <div class="parent-row-img">
+                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421519845/slam-dunk-vol-2-9781421519845_hr.jpg"
+                            alt="">
+                    </div>
+                    <div class="parent-row-text">
+                        <h2>Slam Dunk</h2>
+                        <span>Takehiko Inoue</span>
+                        <p>Winning isn't everything in the game of basketball, but who wants to come in second? It
+                            takes
+                            dedication and discipline to be the best, and the Shohoku High hoops team wants to be
+                            just
+                            that.</p>
+                        <button class="btn btn-primary" type="button">Read more</button>
+                    </div>
+                </div>
+                <div class="parent-row  col-md-4">
+                    <div class="parent-row-img">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNGYyNmI3M2YtNzYzZS00OTViLTkxYjAtZDIyZmE1Y2U1ZmQ2XkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_.jpg"
+                            alt="">
+                    </div>
+                    <div class="parent-row-text">
+                        <h2>Your Name</h2>
+                        <span>Makoto Shinkai</span>
+                        <p>Mitsuha Miyamizu a high school girl living in the fictional town of Itomori in Gifu
+                            Prefecture's mountainous Hida region is fed up with her life in the countryside and
+                            wishes
+                            to be a handsome Tokyo boy in her next life.</p>
+                        <button class="btn btn-primary" type="button">Read more</button>
+                    </div>
+                </div>
+                <div class="parent-row  col-md-4">
+                    <div class="parent-row-img">
+                        <img src="https://th.bing.com/th/id/OIP.7ukUlxrE-1LUo4KQwrhoYQHaLH?pid=ImgDet&rs=1" alt="">
+                    </div>
+                    <div class="parent-row-text">
+                        <h2>One Piece</h2>
+                        <span>Eiichiro Oda</span>
+                        <p> The story follows the adventures of Monkey D. Luffy and his crew, the Straw Hat Pirates,
+                            where he explores the Grand Line in search of the mythical treasure known as the "One
+                            Piece"
+                            in order to become the next King of the Pirates.</p>
+                        <button class="btn btn-primary" type="button">Read more</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer class="container-fluid bg-primary text-white p-5">
+    <div class="row">
+        <div class="col-md my-auto">
+            <h1 class="fw-bold">Contact Us</h1>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <p class="email">r3ys0ncarpio14@gmail.com
+
+                    </p>
+                    <p class="number">09205376504</p>
+                    <ul class="links">
+                        <a href="#"> <i class='bx bxl-facebook'></i></a>
+                        <a href="#"> <i class='bx bxl-instagram'></i></a>
+                        <a href="#"> <i class='bx bxl-github'></i></a>
+                    </ul>
+
+                </div>
+                <div class="col-md-3">
+                    <p class="email">chanzkiechannelz@gmail.com
+
+                    </p>
+                    <p class="number">09505889037</p>
+                    <ul class="links">
+                        <a href="#"> <i class='bx bxl-facebook'></i></a>
+                        <a href="#"> <i class='bx bxl-instagram'></i></a>
+                        <a href="#"> <i class='bx bxl-github'></i></a>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <p class="email">honeylethruno@gmail.com
+
+                    </p>
+                    <p class="number">09355771997</p>
+                    <ul class="links">
+                        <a href="#"> <i class='bx bxl-facebook'></i></a>
+                        <a href="#"> <i class='bx bxl-instagram'></i></a>
+                        <a href="#"> <i class='bx bxl-github'></i></a>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <p class="email">jekdiaz17@gmail.com
+
+                    </p>
+                    <p class="number">09395025145</p>
+                    <ul class="links">
+                        <a href="#"> <i class='bx bxl-facebook'></i></a>
+                        <a href="#"> <i class='bx bxl-instagram'></i></a>
+                        <a href="#"> <i class='bx bxl-github'></i></a>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!--bootstrap script-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+<script>
+          function getBooks() {
+          document.querySelector("#bodyNgSearch").innerHTML = "";
+          const searchQuery = document.querySelector("#IdNgSearchForm").value;
+          const apiKey = "AIzaSyDE2MnXJyfh-Ncs8nWDI262F82lHuQZQk4";
+
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {     
+            console.log(data);
+            for (let i = 0; i < 4; i++) {
+                const book = data.items[i].volumeInfo;
+                const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : 'no-image.png';
+                document.querySelector("#bodyNgSearch").innerHTML +=
+                    `
+                    <div class="row text-center p-3 m-2">
+                        <div class="col">
+                            <img class="m-3" src="${imageUrl}" style="width:200px">
+                            <p class="m-3">${book.title}</p>
+                            <p class="m-3">${book.authors ? book.authors[0] : 'Unkown Author'}</p>
+                            <p class="m-3">${book.publishedDate}</p>
+                        </div>
+                    </div>                   
+                    `;
+            }
+        });
+        } 
+
+
+</script>
+
+
+
+</body>
+</html>
